@@ -25,7 +25,7 @@ SOURCE = main.cpp
 CXXFLAGS += -O1 -Wall -std=c++17
 
 # Library Flags
-# Adjusted for Windows - Raylib + Windows libraries
+# Adjusted for Windows:
 # LFLAGS = -lraylib -lopengl32 -lgdi32 -lwinmm
 # Adjusted for Linux:
 LFLAGS = -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
