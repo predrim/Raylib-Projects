@@ -1,0 +1,41 @@
+# Author: Rudy Faile (@rfaile313)
+# Description: A simple Makefile adapted for Raylib using C++ on Windows Desktop
+# License: MIT
+
+# Define default make program (on Windows this is usually mingw32-make)
+MAKE = mingw32-make
+
+# Protect clean
+.PHONY: all clean
+
+# OUTPUT determines the name of the executable
+OUTPUT = mygame.exe
+
+# Local path to Raylib header-only file
+INCLUDE_PATH = include/
+
+# Local Path to Raylib static compiled library
+LIBRARY_PATH = lib/
+
+# Source file(s)
+# For multiple C++ files, use a wildcard like: SOURCE = $(wildcard *.cpp)
+SOURCE = main.cpp
+
+# Compiler Flags
+CXXFLAGS += -O1 -Wall -std=c++17
+
+# Library Flags
+# Adjusted for Windows - Raylib + Windows libraries
+# LFLAGS = -lraylib -lopengl32 -lgdi32 -lwinmm
+# Adjusted for Linux:
+LFLAGS = -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
+
+# Compiler (g++ for C++)
+CXX = g++
+
+all:
+	$(CXX) $(SOURCE) -o $(OUTPUT) $(CXXFLAGS) -I $(INCLUDE_PATH) -L $(LIBRARY_PATH) $(LFLAGS)
+
+clean:
+	del *.o *.exe /s
+	@echo Cleaning done
