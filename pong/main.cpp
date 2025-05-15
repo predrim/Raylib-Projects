@@ -3,6 +3,10 @@
 
 int playerScore{};
 int opponentScore{};
+Color green = Color{38, 185, 154, 255};
+Color darkGreen = Color{20, 160, 133, 255};
+Color lightGreen = Color{129, 204, 184, 255};
+Color yellow = Color{243, 213, 91, 255};
 
 class Ball 
 {
@@ -69,7 +73,7 @@ class Paddle
     Color color;
 
     void Draw() {
-        DrawRectangle(posX, posY, width, height, color);
+        DrawRectangleRounded(Rectangle{posX, posY, width, height}, 0.8, 0, color);
     }
 
     void UpdatePos() {
@@ -113,7 +117,7 @@ int main(void)
     ball.posX = screenWidth/2;
     ball.posY = screenHeight/2;
     ball.radius = 20.0;
-    ball.color = WHITE;
+    ball.color = yellow;
     ball.speedX = 7;
     ball.speedY = 7;
 
@@ -155,14 +159,15 @@ int main(void)
 
         // Draw
         BeginDrawing();
-            ClearBackground(BLACK);
+            ClearBackground(darkGreen);
+            DrawRectangle(screenWidth/2, 0, screenWidth/2, screenHeight, green);
+            DrawCircle(screenWidth/2,screenHeight/2, 150, lightGreen);
             DrawLine(screenWidth/2, 0, screenWidth/2, screenHeight, WHITE);
             player.Draw();
             opponent.Draw();
             ball.Draw();
             DrawText(TextFormat("%i",opponentScore), screenWidth/4 - 20, 20, 80, WHITE);
             DrawText(TextFormat("%i",playerScore), 3 * screenWidth/4 - 20, 20, 80, WHITE);
-
         EndDrawing();
     }
 
